@@ -1,4 +1,5 @@
 const Hapi = require('@hapi/hapi');
+const routes = require('./routes');
 const port = 7000;
 const init = async () => {
   // eslint-disable-next-line new-cap
