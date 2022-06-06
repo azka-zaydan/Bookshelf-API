@@ -2,7 +2,8 @@ const {defaultHomePage,
   postNewBook,
   showAllBook,
   getBookById,
-  editBookById} = require('./handler');
+  editBookById,
+  deleteBookById} = require('./handler');
 const routes = [
   {
     method: 'GET',
@@ -33,6 +34,11 @@ const routes = [
     method: 'PUT',
     path: '/books/{id}',
     handler: editBookById,
+  },
+  {
+    method: 'DELETE',
+    path: '/books/{id}',
+    handler: deleteBookById,
   },
 ];
 

@@ -49,7 +49,7 @@ const postNewBook = (request, h) => {
     books.push(newBook);
     const response = h.response({
       'status': 'success',
-      'message': 'Buku berhasil di tambahkan',
+      'message': 'Buku berhasil ditambahkan',
       'data': {
         'bookId': newBook.id,
       },
@@ -68,13 +68,32 @@ const postNewBook = (request, h) => {
 ;
 
 const showAllBook = (request, h) => {
-  allBooks = books.map((book)=>{
+  const {name, reading, finished} = request.query;
+  const allBooks = books.map((book)=>{
     return {
       'id': book.id,
       'name': book.name,
       'publisher': book.publisher,
     };
   });
+  if (name || reading || finished !== undefined) {
+    const book = books.filter((book) => {
+      if (book.name == name || book.reading == reading || book.finished == finished) {
+        return {
+          'id': book.id,
+          'name': book.name,
+          'publisher': book.publisher,
+        };
+      }
+    });
+    const response = h.response({
+      status: 'success',
+      data: book,
+    });
+    response.statusCode = 200;
+    return response;
+  }
+
   const response = h.response({
     status: 'success',
     data: {
@@ -87,7 +106,7 @@ const showAllBook = (request, h) => {
 
 const getBookById = (request, h) => {
   const {id} = request.params;
-  const book = books.find((book) => book.id === id);
+  const book = books.filter((book) => book.id === id);
   if (book === undefined) {
     const response = h.response({
       status: 'fail',
@@ -117,6 +136,7 @@ const editBookById = (request, h) => {
   const {id} = request.params;
   const updatedAt = new Date().toISOString();
   const book = books.findIndex((book) => book.id === id);
+  const finished = pageCount == readPage ? true : false;
   if (typeof name == 'undefined') {
     const response = h.response({
       status: 'fail',
@@ -153,7 +173,7 @@ const editBookById = (request, h) => {
       updatedAt,
       finished,
     };
-    console.log(books[id]);
+
     const response = h.response({
       status: 'success',
       message: 'Buku berhasil diperbarui',
@@ -163,12 +183,12 @@ const editBookById = (request, h) => {
   }
 };
 
-const deleteBook = (request, h) => {
+const deleteBookById = (request, h) => {
   const {id} = request.params;
-  const book = notes.findIndex((book) => book.id === id);
+  const book = books.findIndex((book) => book.id === id);
 
   if (book !== -1) {
-    notes.splice(book, 1);
+    books.splice(book, 1);
     const response = h.response({
       status: 'success',
       message: 'Buku berhasil dihapus',
@@ -190,4 +210,4 @@ module.exports = {defaultHomePage,
   showAllBook,
   getBookById,
   editBookById,
-  deleteBook};
+  deleteBookById};
