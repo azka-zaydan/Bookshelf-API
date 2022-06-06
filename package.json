@@ -1,0 +1,29 @@
+{
+  "dependencies": {
+    "@hapi/hapi": "^20.2.2"
+  },
+  "devDependencies": {
+    "eslint": "^8.17.0",
+    "eslint-config-google": "^0.14.0",
+    "nodemon": "^2.0.16"
+  },
+  "scripts": {
+    "start": "nodemon server.js",
+    "lint": "eslint ./"
+  },
+  "name": "bookshelf-api",
+  "description": "bookshelf api for dicoding",
+  "version": "1.0.0",
+  "main": "server.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/azka1415/bookshelf-api.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/azka1415/bookshelf-api/issues"
+  },
+  "homepage": "https://github.com/azka1415/bookshelf-api#readme"
+}
