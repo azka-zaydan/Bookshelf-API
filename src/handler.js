@@ -173,7 +173,6 @@ const editBookById = (request, h) => {
       updatedAt,
       finished,
     };
-
     const response = h.response({
       status: 'success',
       message: 'Buku berhasil diperbarui',
