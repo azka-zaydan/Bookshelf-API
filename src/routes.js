@@ -1,20 +1,10 @@
-const {defaultHomePage,
+const {
   postNewBook,
   showAllBook,
   getBookById,
   editBookById,
   deleteBookById} = require('./handler');
 const routes = [
-  {
-    method: 'GET',
-    path: '/',
-    handler: defaultHomePage,
-  },
-  {
-    method: 'POST',
-    path: '/',
-    handler: defaultHomePage,
-  },
   {
     method: 'POST',
     path: '/books',
